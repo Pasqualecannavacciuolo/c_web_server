@@ -23,14 +23,6 @@ int main()
 {
     char buffer[BUFFER_SIZE];
     // Da implementare allocazione dinamica delle response in base ai contenuti
-    /*char resp[BUFFER_SIZE] = "HTTP/1.0 200 OK\r\n"
-                             "Server: webserver-c\r\n"
-                             "Content-type: text/html\r\n\r\n"
-                             "<html>hello, world fnidjosufbnzdifbdsisadfbnisadbfnilsafb</html>\r\n";
-    char not_found[BUFFER_SIZE] = "HTTP/1.0 404 NOT FOUND\r\n"
-                                  "Server: webserver-c\r\n"
-                                  "Content-type: text/html\r\n\r\n"
-                                  "<html>Document Not Found!</html>\r\n";*/
 
     // CREATE SOCKET
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -102,10 +94,6 @@ int main()
             perror("webserver (read)");
             continue;
         }
-        /*printf(
-            "[%s:%u]\n",
-            inet_ntoa(client_addr.sin_addr),
-            ntohs(client_addr.sin_port));*/
 
         // READ the request
         char method[BUFFER_SIZE], uri[BUFFER_SIZE], version[BUFFER_SIZE];
@@ -114,7 +102,7 @@ int main()
 
         char *clean_uri = stripSlash(uri);
 
-        char file_content[BUFFER_SIZE];
+        char file_content[BUFFER_SIZE] = "";
         bool founded = get_file_to_serve(clean_uri, file_content);
         strcat(file_content, "\r\n");
 
