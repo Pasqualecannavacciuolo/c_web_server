@@ -1,1 +1,0 @@
-gcc bin/webserver.o bin/utils.o -o main
